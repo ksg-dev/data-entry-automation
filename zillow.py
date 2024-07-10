@@ -12,6 +12,7 @@ ZILLOW_URL = os.environ["ZILLOW_CLONE_URL"]
 class ZillowData:
     def __init__(self):
         self.data_content = self.get_data()
+        self.property_dict = self.make_soup()
 
 
     def get_data(self):
@@ -69,8 +70,8 @@ class ZillowData:
             },
         }
         """
-        # print(properties)
+        return properties
 
 
-zillow = ZillowData()
-zillow.make_soup()
+# zillow = ZillowData()
+# zillow.make_soup()
