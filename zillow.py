@@ -40,8 +40,6 @@ class ZillowData:
         # Separate address and rent and append to lists
         for listing in all_listings:
             if "|" in listing:
-        for listing in all_listings:
-            if "|" in listing:
                 first = listing.split(" | ", maxsplit=1)[1]
             else:
                 first = listing.split(", ", maxsplit=1)[1]
