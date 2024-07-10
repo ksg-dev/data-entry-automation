@@ -42,10 +42,10 @@ class ZillowData:
 
             address, other = first.split("\n", maxsplit=1)
             next_piece = other.split("$")[1]
-            rent = next_piece.split("\n", maxsplit=1)[0].split(" ")[0].strip("/mo")
+            rent = next_piece.split("\n", maxsplit=1)[0].split(" ")[0].strip("/mo").strip("+")
 
             all_addresses.append(address.strip())
-            all_rents.append(rent)
+            all_rents.append(f"${rent}")
 
         for n in range(len(all_addresses)):
             properties[n] = {
@@ -54,7 +54,7 @@ class ZillowData:
                 "link": all_links[n]
             }
 
-        print(properties)
+        # print(properties)
 
 
 zillow = ZillowData()
