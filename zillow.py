@@ -54,6 +54,21 @@ class ZillowData:
                 "link": all_links[n]
             }
 
+        """
+        # properties structured like selenium events dict
+        {
+            0: {
+                "address": 'address-string',
+                "rent": '$2,876',
+                "link": 'https:iaedfoanewfo'
+            },
+            1: {
+                "address": address - string,
+                "rent": $2, 876,
+        "link": 'https:iaedfoanewfo'
+            },
+        }
+        """
         # print(properties)
 
 
