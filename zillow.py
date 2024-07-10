@@ -24,14 +24,38 @@ class ZillowData:
         soup = BeautifulSoup(content, "html.parser")
         listing_container = soup.find_all(name="li", class_="ListItem-c11n-8-84-3-StyledListCardWrapper")
 
+        all_listings = [listing.getText().strip() for listing in listing_container]
 
-        for item in all_listings:
-            prop = item.getText().strip()
-            prop.replace("\n\n", "\n")
-        # property_dict
-        print(all_listings)
-        # for each in listings[:5]:
-        #     print(each)
+        all_addresses = []
+        all_rents = []
+        all_links = []
+        properties = {}
+
+        # Get all links to property pages
+        for item in listing_container:
+            link = item.find("a").get("href")
+            all_links.append(link)
+
+        # Separate address and rent and append to lists
+        for listing in all_listings:
+            first = listing.split(", ", maxsplit=1)[1]
+
+            address, other = first.split("\n", maxsplit=1)
+            next_piece = other.split("$")[1]
+            rent = next_piece.split("\n", maxsplit=1)[0].split(" ")[0].strip("/mo")
+
+            all_addresses.append(address.strip())
+            all_rents.append(rent)
+
+        for n in range(len(all_addresses)):
+            properties[n] = {
+                "address": all_addresses[n],
+                "rent": all_rents[n],
+                "link": all_links[n]
+            }
+
+        print(properties)
+
 
 zillow = ZillowData()
 zillow.make_soup()
